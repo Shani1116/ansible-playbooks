@@ -1,0 +1,26 @@
+---
+
+- hosts: <hostname>
+  become: ture
+  become_user: root
+  tasks:
+    - name: Create a folder
+      file:
+        state: directory
+        path: <enter file path>
+
+    - name: Download the executable file
+      get_url:
+        url: <provide URL here>
+        dest: <enter file path you want to save the file>
+        headers: #Enter any headers if needed
+          key1: value
+          key2: value
+        
+    - name: Make the file an executable
+      file:
+        dest: <enter file path>
+        mode: a+x
+
+    - name: Execute the script
+      command: sh <file path to the executable>
